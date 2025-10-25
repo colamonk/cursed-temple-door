@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7fn6p8b18fbb"]
+
+[ext_resource type="Script" uid="uid://d3gr6euhuej72" path="res://scripts/game.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://b4qwv82jl1cwy" path="res://scenes/text_scroll_scene.tscn" id="2_iywne"]
+[ext_resource type="PackedScene" uid="uid://ctxg1k4vu4tjh" path="res://scenes/guessing_scene.tscn" id="3_lbhrr"]
+[ext_resource type="Script" uid="uid://do7jtas332sfo" path="res://scripts/events_data.gd" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://dr38a7w4ytvjg" path="res://scenes/main_menu.tscn" id="4_lbhrr"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_yqjtg")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="IntroScene" parent="." instance=ExtResource("2_iywne")]
+
+[node name="GuessingScene" parent="." instance=ExtResource("3_lbhrr")]
+visible = false
+
+[node name="MainMenu" parent="." instance=ExtResource("4_lbhrr")]
+visible = false
+
+[node name="EventsData" type="Node2D" parent="."]
+script = ExtResource("3_lnu2h")
+
+[connection signal="end_scene" from="IntroScene" to="." method="handle_scene_end"]
+[connection signal="end_scene" from="GuessingScene" to="." method="handle_scene_end"]
+[connection signal="start_new_game" from="MainMenu" to="." method="_on_main_menu_start_new_game"]
