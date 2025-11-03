@@ -39,7 +39,7 @@ func _on_keypad_container_keypress(value: String) -> void:
 		_:
 			tempGuess += value
 	num_label.text = tempGuess
-	pass # Replace with function body.
+	
 
 func check_value(value: String):
 	if not value.length() == 4:
